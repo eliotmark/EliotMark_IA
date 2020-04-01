@@ -151,10 +151,4 @@ public class Computer extends Player {
         }
         return -1;
     }
-
-    // two in a row *column* check
-    // two in a row *row* check
-    // three in a row *row* -- harder check
-
-
 }
