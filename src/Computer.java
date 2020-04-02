@@ -90,7 +90,7 @@ public class Computer extends Player {
 
         // Block if there are two human tokens in a row.
         for(int o=0; o<8; o++) {
-            colNum = twoInARowVerticalBlock(i);
+            colNum = twoInARowVerticalBlock(o);
             if (colNum != -1) {
                 break;
             }
