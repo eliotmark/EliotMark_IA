@@ -39,7 +39,6 @@ public class Computer extends Player {
 //        return column;
 //    }
 
-    // Are duplicates bad? They show up as an error in the code but seem okay?
     public int determineMove(int playerMove) {
         int colNum = -1;
 
@@ -47,14 +46,14 @@ public class Computer extends Player {
         for(int i=0; i<8; i++) {
             colNum = threeInARowVerticalWin(i);
             if(colNum != -1) {
-                break;
+                return colNum;
             }
         }
 
         for(int j=0; j<8; j++) {
             colNum = threeInARowHorizontalWin(j);
             if(colNum != -1) {
-                break;
+                return colNum;
             }
         }
 
@@ -62,14 +61,14 @@ public class Computer extends Player {
         for(int k=0; k<8; k++) {
             colNum = threeInARowVerticalBlock(k);
             if (colNum != -1) {
-                break;
+                return colNum;
             }
         }
 
         for(int l=0; l<8; l++) {
             colNum = threeInARowHorizontalBlock(l);
             if (colNum != -1) {
-                break;
+                return colNum;
             }
         }
 
@@ -77,14 +76,14 @@ public class Computer extends Player {
         for(int m=0; m<8; m++) {
             colNum = twoInARowVerticalWin(m);
             if (colNum != -1) {
-                break;
+                return colNum;
             }
         }
 
         for(int n=0; n<8; n++) {
             colNum = twoInARowHorizontalWin(n);
             if (colNum != -1) {
-                break;
+                return colNum;
             }
         }
 
@@ -92,17 +91,27 @@ public class Computer extends Player {
         for(int o=0; o<8; o++) {
             colNum = twoInARowVerticalBlock(o);
             if (colNum != -1) {
-                break;
+                return colNum;
             }
         }
 
         for(int p=0; p<8; p++){
             colNum = twoInARowHorizontalBlock(p);
             if (colNum != -1) {
-                break;
+                return colNum;
             }
         }
-        return colNum;
+        int col = (int)(Math.random() * 3);
+        if(col==1 && playerMove-1>-1) {
+            return playerMove-1;
+        }
+        if(col==2) {
+            return playerMove;
+        }
+        if(col==3 && playerMove+1<8) {
+            return playerMove+1;
+        }
+        return 1;
     }
 
     // Methods to block human.

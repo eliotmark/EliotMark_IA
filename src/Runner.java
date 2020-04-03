@@ -28,17 +28,16 @@ public class Runner {
                 if(sc.hasNextInt()) {
                     moveCol = sc.nextInt()-1;
                     legalCol = true;
+                    System.out.println("Enter a column.");
 
-                    if(moveCol>8 || moveCol<0) {
+                    if(moveCol>7 || moveCol<0) {
                         System.out.println("This is not a valid column. Please enter a new, valid column.");
                         legalCol = false;
-                        sc.next();
                     }
 
                     if(moveCol<8 && !computer.board.colIsNotFull(moveCol)) {
                         System.out.println("This column is full.");
                         legalCol = false;
-                        sc.next();
                     }
                 }else{
                     System.out.println("This is not a valid column. Please enter a new, valid column.");
@@ -50,14 +49,18 @@ public class Runner {
                 }
             }
 
+            // Displays board.
+            computer.board.displayBoard();
+            System.out.println();
+
             // Checks to see if human won.
             if(computer.board.determineWin(human.token)) {
                 break;
             }
 
             // Computer's move.
-            int cMove = computer.determineMove();
-            computer.board.makeMove(cMove, computer.token);
+            int computerMove = computer.determineMove(moveCol);
+            computer.board.makeMove(computerMove, computer.token);
 
             // Displays board.
             computer.board.displayBoard();

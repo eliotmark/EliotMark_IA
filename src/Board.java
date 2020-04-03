@@ -54,9 +54,8 @@ public class Board {
     public boolean determineWin(String token) {
         boolean ver = determineWinVertical(token);
         boolean hor = determineWinHorizontal(token);
-        //boolean diag = determineWinDiagonal(token);
-        return ver || hor ;
-                //|| diag;
+        boolean diag = determineWinDiagonal(token);
+        return ver || hor || diag;
     }
 
     public boolean determineWinVertical(String token) {
@@ -84,6 +83,58 @@ public class Board {
                 }
             }
         }
+        return false;
+    }
+
+    public boolean determineWinDiagonal(String token) {
+        // Top left down right.
+        for(int row=0; row<5; row++) {
+            for(int col=0; col<5; col++) {
+                if(grid[row][col].equals(token) &&
+                        grid[row+1][col+1].equals(token) &&
+                        grid[row+2][col+2].equals(token) &&
+                        grid[row+3][col+3].equals(token)) {
+                    return true;
+                }
+            }
+        }
+
+        // Top right down left.
+        for(int row=0; row<5; row++) {
+            for(int col=7; col>2; col--) {
+                if(grid[row][col].equals(token) &&
+                        grid[row+1][col-1].equals(token) &&
+                        grid[row+2][col-2].equals(token) &&
+                        grid[row+3][col-3].equals(token)) {
+                    return true;
+                }
+            }
+        }
+
+        // Bottom left up right.
+        for(int row=7; row>5; row--) {
+            for(int col=0; col<5; col++) {
+                if(grid[row][col].equals(token) &&
+                        grid[row-1][col+1].equals(token) &&
+                        grid[row-2][col+2].equals(token) &&
+                        grid[row-3][col+3].equals(token)) {
+                    return true;
+                }
+            }
+        }
+
+        // Bottom right up left.
+        for(int row=7; row>5; row--) {
+            for(int col=7; col>2; col--) {
+                if(grid[row][col].equals(token) &&
+                        grid[row-1][col-1].equals(token) &&
+                        grid[row-2][col-2].equals(token) &&
+                        grid[row-3][col-3].equals(token)) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 }
