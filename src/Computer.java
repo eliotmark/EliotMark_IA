@@ -13,32 +13,7 @@ public class Computer extends Player {
 //        return col;
 //    }
 
-    // FIX THIS
-    // Decides where the computer goes.
-//    public int determineMove(Board board) {
-//        int column = -1;
-//        board.getGrid();
-//        for (int col = 0; col < 8; col++) {
-//            for (int row = 0; row < 8; row++) {
-//                if (board.getGrid()[row][col].equals(token) &&
-//                        board.getGrid()[row + 1][col].equals(token) &&
-//                        board.getGrid()[row + 2][col].equals(token)) {
-//                    board.getGrid()[row + 3][col] = token;
-//                }
-//            }
-//        }
-//        for (int col = 0; col < 8; col++) {
-//            for (int row = 0; row < 8; row++) {
-//                if (board.getGrid()[row][col].equals(token) &&
-//                        board.getGrid()[row][col+1].equals(token) &&
-//                        board.getGrid()[row][col+2].equals(token)) {
-//                    board.getGrid()[row][col+3] = token;
-//                }
-//            }
-//        }
-//        return column;
-//    }
-
+    // Horizontal is weird bc it's after vertical?
     public int determineMove(int playerMove) {
         int colNum = -1;
 
@@ -162,32 +137,25 @@ public class Computer extends Player {
     }
 
     public int threeInARowHorizontalBlock(int rowNum) {
-        for(int col=0; col<8; col++) {
-            if(board.getGrid()[rowNum][col].equals("x")) {
-                if(col+1>6) {
+        for (int col = 0; col < 8; col++) {
+            if (board.getGrid()[rowNum][col].equals("x")) {
+                if (col + 1 > 6) {
                     return -1;
-                }else if(board.getGrid()[rowNum][col+1].equals("x")) {
-                    if(col+2>7) {
+                } else if (board.getGrid()[rowNum][col + 1].equals("x")) {
+                    if (col + 2 > 7) {
                         return -1;
-                    }else if(board.getGrid()[rowNum][col+2].equals("x")) {
-                        if(col+3<7) {
-                            if(board.getGrid()[rowNum][col+3].equals("-") && !board.getGrid()[rowNum][col+3].equals("-")) {
-                                return col+3;
+                    } else if (board.getGrid()[rowNum][col + 2].equals("x")) {
+                        if (col + 3 < 7) {
+                            if (board.getGrid()[rowNum][col + 3].equals("-") && rowNum==7 || board.getGrid()[rowNum][col + 3].equals("-") && !board.getGrid()[rowNum-1][col+3].equals("-")) {
+                                return col + 3;
                             }
-                        }else if(col-1>0) {
-                            if(board.getGrid()[rowNum][col-1].equals("-") && !board.getGrid()[rowNum][col-1].equals("-")) {
-                                return col-1;
+                        } else if (col - 1 > 0) {
+                            if (board.getGrid()[rowNum][col - 1].equals("-") && rowNum==7 || board.getGrid()[rowNum][col - 1].equals("-") && !board.getGrid()[rowNum-1][col - 1].equals("-")) {
+                                return col - 1;
                             }
                         }
-                    }else{
-                        return -1;
                     }
-                }else{
-                    return -1;
                 }
-            }
-            if(board.getGrid()[rowNum][col].equals("o")) {
-                return -1;
             }
         }
         return -1;
@@ -202,20 +170,15 @@ public class Computer extends Player {
                     if (col + 2 > 7) {
                         return -1;
                     } else if (col + 2 < 7) {
-                        if (board.getGrid()[rowNum][col + 2].equals("-") && !board.getGrid()[rowNum][col + 2].equals("-")) {
+                        if (board.getGrid()[rowNum][col + 2].equals("-") && rowNum==7 || board.getGrid()[rowNum][col+2].equals("-") && !board.getGrid()[rowNum-1][col+2].equals("-")) {
                             return col + 3;
                         }
                     } else if (col - 1 > 0) {
-                        if (board.getGrid()[rowNum][col - 1].equals("-") && !board.getGrid()[rowNum][col - 1].equals("-")) {
+                        if (board.getGrid()[rowNum][col - 1].equals("-") && rowNum==7 || board.getGrid()[rowNum][col - 1].equals("-") && !board.getGrid()[rowNum-1][col - 1].equals("-")) {
                             return col - 1;
                         }
                     }
                 }
-            } else {
-                return -1;
-            }
-            if (board.getGrid()[rowNum][col].equals("o")) {
-                return -1;
             }
         }
         return -1;
@@ -279,23 +242,16 @@ public class Computer extends Player {
                         return -1;
                     }else if(board.getGrid()[rowNum][col+2].equals("o")) {
                         if(col+3<7) {
-                            if(board.getGrid()[rowNum][col+3].equals("-") && !board.getGrid()[rowNum][col+3].equals("-")) {
+                            if(board.getGrid()[rowNum][col+3].equals("-") && rowNum==7 || board.getGrid()[rowNum][col+3].equals("-") && !board.getGrid()[rowNum-1][col+3].equals("-")) {
                                 return col+3;
                             }
                         }else if(col-1>0) {
-                            if(board.getGrid()[rowNum][col-1].equals("-") && !board.getGrid()[rowNum][col-1].equals("-")) {
+                            if(board.getGrid()[rowNum][col-1].equals("-") && rowNum==7 || board.getGrid()[rowNum][col-1].equals("-") && !board.getGrid()[rowNum-1][col-1].equals("-")) {
                                 return col-1;
                             }
                         }
-                    }else{
-                        return -1;
                     }
-                }else{
-                    return -1;
                 }
-            }
-            if(board.getGrid()[rowNum][col].equals("x")) {
-                return -1;
             }
         }
         return -1;
@@ -310,22 +266,18 @@ public class Computer extends Player {
                     if (col + 2 > 7) {
                         return -1;
                     } else if (col + 2 < 7) {
-                        if (board.getGrid()[rowNum][col + 2].equals("-") && !board.getGrid()[rowNum][col + 2].equals("-")) {
+                        if (board.getGrid()[rowNum][col + 2].equals("-") && rowNum==7 || board.getGrid()[rowNum][col + 2].equals("-") && !board.getGrid()[rowNum-1][col + 2].equals("-")) {
                             return col + 3;
                         }
                     } else if (col - 1 > 0) {
-                        if (board.getGrid()[rowNum][col - 1].equals("-") && !board.getGrid()[rowNum][col - 1].equals("-")) {
+                        if (board.getGrid()[rowNum][col - 1].equals("-") && rowNum==7 || board.getGrid()[rowNum][col - 1].equals("-") && !board.getGrid()[rowNum-1][col - 1].equals("-")) {
                             return col - 1;
                         }
                     }
                 }
-            } else {
-                return -1;
-            }
-            if (board.getGrid()[rowNum][col].equals("x")) {
-                return -1;
             }
         }
         return -1;
     }
+
 }

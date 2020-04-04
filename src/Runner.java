@@ -35,7 +35,7 @@ public class Runner {
                         legalCol = false;
                     }
 
-                    if(moveCol<8 && !computer.board.colIsNotFull(moveCol)) {
+                    if(moveCol<8 && moveCol>0 && !computer.board.colIsNotFull(moveCol)) {
                         System.out.println("This column is full.");
                         legalCol = false;
                     }
