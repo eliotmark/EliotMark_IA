@@ -49,6 +49,12 @@ public class Runner {
                 }
             }
 
+            // Checks to see if it's a tie. --- Is there a way to do think without having a really long if statement?
+            if(computer.board.getGrid()[0][0].equals("x") || computer.board.getGrid()[0][moveCol].equals("o")) {
+                System.out.println("It's a tie.");
+                break;
+            }
+
             // Displays board.
             computer.board.displayBoard();
             System.out.println();
