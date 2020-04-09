@@ -8,12 +8,6 @@ public class Computer extends Player {
     }
 
     // Decides where the computer goes.
-//    public int determineMove() {
-//        int col = (int)(Math.random() * 8);
-//        return col;
-//    }
-
-    // Horizontal is weird bc it's after vertical?
     public int determineMove(int playerMove) {
         int colNum = -1;
 
@@ -22,16 +16,16 @@ public class Computer extends Player {
             if(board.colIsNotFull(i)) {
                 colNum = threeInARowVerticalWin(i);
             }
-            if(colNum != -1) {
-                return colNum;
-            }
+        }
+        if(colNum != -1) {
+            return colNum;
         }
 
         for(int j=0; j<8; j++) {
             colNum = threeInARowHorizontalWin(j);
-            if(colNum != -1) {
-                return colNum;
-            }
+        }
+        if(colNum != -1) {
+            return colNum;
         }
 
         // Block if there are three human tokens in a row.
@@ -39,16 +33,16 @@ public class Computer extends Player {
             if(board.colIsNotFull(k)) {
                 colNum = threeInARowVerticalBlock(k);
             }
-            if (colNum != -1) {
-                return colNum;
-            }
+        }
+        if (colNum != -1) {
+            return colNum;
         }
 
         for(int l=0; l<8; l++) {
             colNum = threeInARowHorizontalBlock(l);
-            if (colNum != -1) {
-                return colNum;
-            }
+        }
+        if (colNum != -1) {
+            return colNum;
         }
 
         // Put down token if there are two in a row.
@@ -56,16 +50,16 @@ public class Computer extends Player {
             if(board.colIsNotFull(m)) {
                 colNum = twoInARowVerticalWin(m);
             }
-            if (colNum != -1) {
-                return colNum;
-            }
+        }
+        if (colNum != -1) {
+            return colNum;
         }
 
         for(int n=0; n<8; n++) {
             colNum = twoInARowHorizontalWin(n);
-            if (colNum != -1) {
-                return colNum;
-            }
+        }
+        if (colNum != -1) {
+            return colNum;
         }
 
         // Block if there are two human tokens in a row.
@@ -73,17 +67,18 @@ public class Computer extends Player {
             if(board.colIsNotFull(o)) {
                 colNum = twoInARowVerticalBlock(o);
             }
-            if (colNum != -1) {
-                return colNum;
-            }
+        }
+        if (colNum != -1) {
+            return colNum;
         }
 
         for(int p=0; p<8; p++){
             colNum = twoInARowHorizontalBlock(p);
-            if (colNum != -1) {
-                return colNum;
-            }
         }
+        if (colNum != -1) {
+            return colNum;
+        }
+
         int col = ((int)(Math.random() * 3)) + 1;
         if(col==1 && playerMove-1>-1) {
             return playerMove-1;
@@ -119,9 +114,6 @@ public class Computer extends Player {
                     return -1;
                 }
             }
-            if(board.getGrid()[row][colNum].equals("o")) {
-                return -1;
-            }
         }
         return -1;
     }
@@ -129,10 +121,10 @@ public class Computer extends Player {
     public int twoInARowVerticalBlock(int colNum) {
         for(int row=0; row<8; row++) {
             if(board.getGrid()[row][colNum].equals("x")) {
-                if(row+1>6) {
+                if(row>6) {
                     return -1;
                 }else if(board.getGrid()[row+1][colNum].equals("x")) {
-                    if(row+2>7) {
+                    if(row+1>7) {
                         return -1;
                     }else{
                         return colNum;
@@ -140,9 +132,6 @@ public class Computer extends Player {
                 }else{
                     return -1;
                 }
-            }
-            if(board.getGrid()[row][colNum].equals("o")) {
-                return -1;
             }
         }
         return -1;
@@ -214,9 +203,6 @@ public class Computer extends Player {
                     return -1;
                 }
             }
-            if(board.getGrid()[row][colNum].equals("x")) {
-                return -1;
-            }
         }
         return -1;
     }
@@ -224,10 +210,10 @@ public class Computer extends Player {
     public int twoInARowVerticalWin(int colNum) {
         for(int row=0; row<8; row++) {
             if(board.getGrid()[row][colNum].equals("o")) {
-                if(row+1>6) {
+                if(row>6) {
                     return -1;
                 }else if(board.getGrid()[row+1][colNum].equals("o")) {
-                    if(row+2>7) {
+                    if(row+1>7) {
                         return -1;
                     }else{
                         return colNum;
@@ -235,9 +221,6 @@ public class Computer extends Player {
                 }else{
                     return -1;
                 }
-            }
-            if(board.getGrid()[row][colNum].equals("x")) {
-                return -1;
             }
         }
         return -1;

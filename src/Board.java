@@ -18,9 +18,9 @@ public class Board {
         return this.grid;
     }
 
-    public int getSize() {
-        return size;
-    }
+//    public int getSize() {
+//        return size;
+//    }
 
     // Prints the board.
     public void displayBoard() {
@@ -34,7 +34,6 @@ public class Board {
 
     // Places a token in an empty spot.
     public void makeMove(int col, String token) {
-        getGrid();
         for (int i = size-1; i >= 0; i--) {
             if (grid[i][col].equals("-")) {
                 grid[i][col] = token;
