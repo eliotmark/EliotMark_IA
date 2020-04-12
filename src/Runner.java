@@ -13,7 +13,7 @@ public class Runner {
         String username = sc.nextLine();
         computer.board.displayBoard();
         System.out.println("Hello " + username + ". Welcome to Connect 4! A - represents an empty spot. " +
-                "x's are your tokens, and o's are the computer's tokens. Please write a number of the column to place your token in.");
+                "x's are your tokens, and o's are the computer's tokens.");
 
         int[] colCount = new int[8];
 
@@ -26,7 +26,7 @@ public class Runner {
             // Human's move.
             while(!legalCol) {
 
-                System.out.println("Enter a column down below.");
+                System.out.println("Enter a column between 1 and 8 (inclusive).");
 
                 if(sc.hasNextInt()) {
                     moveCol = sc.nextInt()-1;
@@ -37,12 +37,12 @@ public class Runner {
                         legalCol = false;
                     }
 
-                    if(moveCol<8 && moveCol>0 && !computer.board.colIsNotFull(moveCol)) {
+                    if(moveCol<8 && moveCol>-1 && !computer.board.colIsNotFull(moveCol)) {
                         System.out.println("This column is full.");
                         legalCol = false;
                     }
                 }else{
-                    System.out.println("This is not a valid column. Please enter a new, valid column. This has to be an integer from 1-8 (inclusive).");
+                    System.out.println("This is not a valid column. Please enter a new, valid column.");
                     sc.next();
                 }
 

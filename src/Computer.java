@@ -16,16 +16,16 @@ public class Computer extends Player {
             if(board.colIsNotFull(i)) {
                 colNum = threeInARowVerticalWin(i);
             }
-        }
-        if(colNum != -1) {
-            return colNum;
+            if(colNum != -1) {
+                return colNum;
+            }
         }
 
         for(int j=0; j<8; j++) {
             colNum = threeInARowHorizontalWin(j);
-        }
-        if(colNum != -1) {
-            return colNum;
+            if(colNum != -1) {
+                return colNum;
+            }
         }
 
         // Block if there are three human tokens in a row.
@@ -33,16 +33,16 @@ public class Computer extends Player {
             if(board.colIsNotFull(k)) {
                 colNum = threeInARowVerticalBlock(k);
             }
-        }
-        if (colNum != -1) {
-            return colNum;
+            if (colNum != -1) {
+                return colNum;
+            }
         }
 
         for(int l=0; l<8; l++) {
             colNum = threeInARowHorizontalBlock(l);
-        }
-        if (colNum != -1) {
-            return colNum;
+            if (colNum != -1) {
+                return colNum;
+            }
         }
 
         // Put down token if there are two in a row.
@@ -50,16 +50,16 @@ public class Computer extends Player {
             if(board.colIsNotFull(m)) {
                 colNum = twoInARowVerticalWin(m);
             }
-        }
-        if (colNum != -1) {
-            return colNum;
+            if (colNum != -1) {
+                return colNum;
+            }
         }
 
         for(int n=0; n<8; n++) {
             colNum = twoInARowHorizontalWin(n);
-        }
-        if (colNum != -1) {
-            return colNum;
+            if (colNum != -1) {
+                return colNum;
+            }
         }
 
         // Block if there are two human tokens in a row.
@@ -67,16 +67,16 @@ public class Computer extends Player {
             if(board.colIsNotFull(o)) {
                 colNum = twoInARowVerticalBlock(o);
             }
-        }
-        if (colNum != -1) {
-            return colNum;
+            if (colNum != -1) {
+                return colNum;
+            }
         }
 
         for(int p=0; p<8; p++){
             colNum = twoInARowHorizontalBlock(p);
-        }
-        if (colNum != -1) {
-            return colNum;
+            if (colNum != -1) {
+                return colNum;
+            }
         }
 
         int col = ((int)(Math.random() * 3)) + 1;
